@@ -26,6 +26,7 @@ const links = [
   { name: "tabs", href: "tabs" },
   { name: "data table", href: "data-table" },
   { name: "form", href: "form" },
+  { name: "theme", href: "theme" },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({
@@ -35,7 +36,7 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
+      <nav className="fixed z-30 w-full bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-slate-900">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
@@ -43,7 +44,7 @@ export default function DashboardLayout({
                 id="toggleSidebarMobile"
                 aria-expanded="true"
                 aria-controls="sidebar"
-                className="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
+                className="p-2 mr-2 text-gray-600 rounded cursor-pointer hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 lg:hidden"
               >
                 <svg
                   id="toggleSidebarMobileHamburger"
@@ -60,7 +61,7 @@ export default function DashboardLayout({
                 </svg>
                 <svg
                   id="toggleSidebarMobileClose"
-                  className="w-6 h-6 hidden"
+                  className="hidden w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,13 +75,13 @@ export default function DashboardLayout({
               </button>
               <a
                 href="#"
-                className="text-xl font-bold flex items-center lg:ml-2.5"
+                className="flex items-center text-xl font-bold lg:ml-2.5"
               >
                 {/* Logo */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                 >
                   <rect width="256" height="256" fill="none"></rect>
                   <line
@@ -106,7 +107,7 @@ export default function DashboardLayout({
                     strokeWidth="16"
                   ></line>
                 </svg>
-                <span className="self-center whitespace-nowrap ml-2">
+                <span className="self-center ml-2 whitespace-nowrap">
                   {" "}
                   Shadcn/ui
                 </span>
@@ -122,21 +123,21 @@ export default function DashboardLayout({
           </div>
         </div>
       </nav>
-      <div className="flex overflow-hidden bg-white pt-16">
+      <div className="flex pt-16 overflow-hidden bg-white dark:bg-slate-900">
         <aside
           id="sidebar"
-          className="fixed hidden z-20 h-full top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+          className="fixed top-0 left-0 z-20 flex-col flex-shrink-0 hidden w-64 h-full pt-16 duration-75 transition-width lg:flex"
           aria-label="Sidebar"
         >
-          <div className="relative flex-1 flex flex-col min-h-0 borderR border-gray-200 bg-white pt-0">
-            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex-1 px-3 bg-white divide-y space-y-1">
-                <ul className="space-y-2 pb-2">
+          <div className="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-gray-200 borderR dark:bg-slate-900">
+            <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
+              <div className="flex-1 px-3 space-y-1 bg-white divide-y dark:bg-slate-900">
+                <ul className="pb-2 space-y-2">
                   {links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-base capitalize text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                        className="flex items-center p-2 text-base font-normal text-gray-900 capitalize rounded-lg group hover:bg-gray-100 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                       >
                         <span className="ml-3">{link.name}</span>
                       </Link>
@@ -148,28 +149,28 @@ export default function DashboardLayout({
           </div>
         </aside>
         <div
-          className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
+          className="fixed inset-0 z-10 hidden bg-gray-900 opacity-50"
           id="sidebarBackdrop"
         ></div>
         <div
           id="main-content"
-          className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
+          className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-black"
         >
           <main>
-            <div className="pt-6 px-4">
-              <div className="w-full min-h-[calc(100vh-230px)]">
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
+            <div className="px-4 pt-6">
+              <div className="min-h-[calc(100vh-230px)] w-full">
+                <div className="p-4 bg-white rounded-lg shadow sm:p-6 xl:p-8 dark:bg-slate-900">
                   {children}
                 </div>
               </div>
             </div>
           </main>
-          <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
-            <ul className="flex items-center flex-wrap mb-6 md:mb-0">
+          <footer className="p-4 mx-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-slate-800">
+            <ul className="flex flex-wrap items-center mb-6 md:mb-0">
               <li>
                 <a
                   href="#"
-                  className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                  className="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6"
                 >
                   Terms and conditions
                 </a>
@@ -177,7 +178,7 @@ export default function DashboardLayout({
               <li>
                 <a
                   href="#"
-                  className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                  className="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6"
                 >
                   Privacy Policy
                 </a>
@@ -185,7 +186,7 @@ export default function DashboardLayout({
               <li>
                 <a
                   href="#"
-                  className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                  className="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6"
                 >
                   Licensing
                 </a>
@@ -193,7 +194,7 @@ export default function DashboardLayout({
               <li>
                 <a
                   href="#"
-                  className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                  className="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6"
                 >
                   Cookie Policy
                 </a>
@@ -207,10 +208,10 @@ export default function DashboardLayout({
                 </a>
               </li>
             </ul>
-            <div className="flex sm:justify-center space-x-6">
+            <div className="flex space-x-6 sm:justify-center">
               <a href="#" className="text-gray-500 hover:text-gray-900">
                 <svg
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -224,7 +225,7 @@ export default function DashboardLayout({
               </a>
               <a href="#" className="text-gray-500 hover:text-gray-900">
                 <svg
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -238,7 +239,7 @@ export default function DashboardLayout({
               </a>
               <a href="#" className="text-gray-500 hover:text-gray-900">
                 <svg
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -248,7 +249,7 @@ export default function DashboardLayout({
               </a>
               <a href="#" className="text-gray-500 hover:text-gray-900">
                 <svg
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -262,7 +263,7 @@ export default function DashboardLayout({
               </a>
               <a href="#" className="text-gray-500 hover:text-gray-900">
                 <svg
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -276,7 +277,7 @@ export default function DashboardLayout({
               </a>
             </div>
           </footer>
-          <p className="text-center text-sm text-gray-500 my-10">
+          <p className="my-10 text-sm text-center text-gray-500">
             &copy; 2019-{new Date().getFullYear()}{" "}
             <a href="#" className="hover:underline" target="_blank">
               Themesberg
